@@ -1,0 +1,13 @@
+.header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    overflow-x: scroll;
+    width: 750px;
+    background: -webkit-gradient(linear, 78% 100%, 68% 0%, from(#645af9), to(#708aff));
+    img{
+        width: 150px;
+        height:150px;
+    }
+}
