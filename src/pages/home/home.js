@@ -1,5 +1,6 @@
 import React from 'react'
 import Menu from '../../components/Menu'
+import Router from '../../router/index'
 
 import { Button,Layout } from 'antd';
 import {
@@ -14,8 +15,6 @@ import {
 } from '@ant-design/icons';
 import './index.scss'
 const { Header, Footer, Sider, Content } = Layout;
-
-
 
 export default class App extends React.Component {
   state = {
@@ -33,8 +32,8 @@ toggleCollapsed = () => {
     return (
       <div className=''>
         <Layout>
-          <Sider>
-            <Menu/>
+          <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+            <Menu collapsed={this.state.collapsed}/>
           </Sider>
           <Layout className="site-layout">
             <Header className='site-layout-background'>
@@ -50,7 +49,7 @@ toggleCollapsed = () => {
               </Button>
             </Header>
             <Content>
-              Content
+              <Router></Router>
             </Content>
             <Footer>Footer</Footer>
           </Layout>

@@ -25,13 +25,14 @@ class App  extends  React.Component {
     };
     render() {
         return (
-            <Scrollbars className='left-wrap' style={{ width: 200 }}>
+            <div>
+                <Scrollbars className='left-wrap' >
                 <Menu
                 defaultSelectedKeys={['1']}
                 defaultOpenKeys={['sub1']}
                 mode="inline"
                 theme="dark"
-                inlineCollapsed={this.state.collapsed}
+                inlineCollapsed={this.props.collapsed}
                 >
                     <Menu.Item key="1" icon={<PieChartOutlined />}>
                         概况
@@ -44,6 +45,7 @@ class App  extends  React.Component {
                     </Menu.Item>
                 </Menu>
             </Scrollbars>
+            </div>
         )
     }
 }
