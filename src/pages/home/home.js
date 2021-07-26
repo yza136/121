@@ -1,8 +1,8 @@
 import React from 'react'
 import Menu from '../../components/Menu'
 import Router from '../../router/index'
-
-import { Button,Layout } from 'antd';
+import {HashRouter, Route, Switch,Link } from 'react-router-dom';
+import { Button, Layout, Breadcrumb } from 'antd';
 import {
   AppstoreOutlined,
   MenuUnfoldOutlined,
@@ -16,24 +16,67 @@ import {
 import './index.scss'
 const { Header, Footer, Sider, Content } = Layout;
 
+
+
+const routes = [
+  {
+    path: 'index',
+    breadcrumbName: 'home',
+  },
+  {
+    path: 'first',
+    breadcrumbName: 'first',
+    children: [
+      {
+        path: '/general',
+        breadcrumbName: 'General',
+      },
+      {
+        path: '/layout',
+        breadcrumbName: 'Layout',
+      },
+      {
+        path: '/navigation',
+        breadcrumbName: 'Navigation',
+      },
+    ],
+  },
+  {
+    path: 'second',
+    breadcrumbName: 'second',
+  },
+];
+
+
 export default class App extends React.Component {
   state = {
     collapsed: false,
     loadings: [],
   };
 
-toggleCollapsed = () => {
+  toggleCollapsed = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
-};
+  };
+  itemRender = (route, params, routes, paths) => {
+    const last = routes.indexOf(route) === routes.length - 1;
+    return last ? (
+      <span>{route.breadcrumbName}</span>
+    ) : (
+      <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+    );
+
+  };
+
   render() {
     const { loadings } = this.state;
     return (
       <div className=''>
+        <Breadcrumb itemRender={itemRender} routes={routes} />
         <Layout>
           <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-            <Menu collapsed={this.state.collapsed}/>
+            <Menu collapsed={this.state.collapsed} />
           </Sider>
           <Layout className="site-layout">
             <Header className='site-layout-background'>
@@ -49,6 +92,9 @@ toggleCollapsed = () => {
               </Button>
             </Header>
             <Content>
+              <div>
+                
+              </div>
               <Router></Router>
             </Content>
             <Footer>Footer</Footer>
