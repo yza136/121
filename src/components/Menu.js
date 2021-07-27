@@ -23,6 +23,7 @@ class App  extends  React.Component {
           collapsed: !this.state.collapsed,
         });
     };
+
     render() {
         return (
             <div>

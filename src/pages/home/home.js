@@ -59,21 +59,19 @@ export default class App extends React.Component {
       collapsed: !this.state.collapsed,
     });
   };
-  itemRender = (route, params, routes, paths) => {
-    const last = routes.indexOf(route) === routes.length - 1;
-    return last ? (
-      <span>{route.breadcrumbName}</span>
-    ) : (
-      <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
-    );
+  itemRender = (props) => {
+    console.log(props)
 
   };
+  componentWillMount(){
+    console.log(this)
+  }
 
   render() {
     const { loadings } = this.state;
     return (
       <div className=''>
-        <Breadcrumb itemRender={itemRender} routes={routes} />
+        {/* <Breadcrumb itemRender={this.itemRender()} routes={routes} /> */}
         <Layout>
           <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
             <Menu collapsed={this.state.collapsed} />
