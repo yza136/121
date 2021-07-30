@@ -38,3 +38,28 @@
     transform: rotate(360deg);
   }
 }
+.header{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	overflow: hidden;
+	overflow-x: scroll;
+	width: 750px;
+	background: -webkit-gradient(linear, 78% 100%, 68% 0%, from(#645af9), to(#708aff));
+    img{
+		width: 150px;
+		height:150px;
+    }
+}
+.left-wrap{
+	background: #001529;
+	height: 100vh!important;
+}
+
+.site-layout .site-layout-background {
+	background: #fff;
+	display: flex;
+	justify-content: space-between;
+    align-items: center;
+}
+ 

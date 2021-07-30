@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Table, Tag, Space } from 'antd';
+import {HashRouter, Route, Switch,Link } from 'react-router-dom';
+import { Table, Tag, Space,Breadcrumb } from 'antd';
 
 const columns = [
   {
@@ -73,11 +74,61 @@ const data = [
     tags: ['cool', 'teacher'],
   },
 ];
+const routes = [
+  {
+    path: 'index',
+    breadcrumbName: 'home',
+  },
+  {
+    path: 'first',
+    breadcrumbName: 'first',
+    children: [
+      {
+        path: '/general',
+        breadcrumbName: 'General',
+      },
+      {
+        path: '/layout',
+        breadcrumbName: 'Layout',
+      },
+      {
+        path: '/navigation',
+        breadcrumbName: 'Navigation',
+      },
+    ],
+  },
+  {
+    path: 'secon',
+    breadcrumbName: 'second',
+  },
+];
+
+
+var itemRender = (route, params, routes, paths)=>{
+  const last = routes.indexOf(route) === routes.length - 1;
+  return last ? (
+    <span>{route.breadcrumbName}</span>
+  ) : (
+    <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+  );
+}
+var Uef = ()=>{
+  return(
+    <div>352521</div>
+  )
+}
+
 
 export default class App extends React.Component {
+  
+
+
     render() {
         return (
+          <div>
+            <Breadcrumb itemRender={itemRender} routes={routes} />
             <Table columns={columns} dataSource={data} />
+          </div>
         )
     }
 
