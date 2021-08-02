@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { HashRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
+import { HashRouter, Route, Switch, Link, NavLink,withRouter} from 'react-router-dom';
 import { Menu, Button } from 'antd';
 import { Scrollbars } from 'react-custom-scrollbars';
 import {
@@ -25,23 +25,23 @@ class App extends React.Component {
         });
     };
     UNSAFE_componentWillMount(){
-        console.log()
+        console.log(this.props.history.location.pathname)
     }
     render() {
         return (
             <div>
                 <Scrollbars className='left-wrap' >
                     <Menu
-                        defaultSelectedKeys={['1']}
+                        defaultSelectedKeys={[this.props.history.location.pathname]}
                         defaultOpenKeys={['sub1']}
                         mode="inline"
                         theme="dark"
                         inlineCollapsed={this.props.collapsed}
                     >
-                        <Menu.Item key="1" icon={<PieChartOutlined />}>
-                            <NavLink to='/' replace>概况</NavLink>
+                        <Menu.Item key="/" icon={<PieChartOutlined />}>
+                            <Link to='/' replace   >概况</Link>
                         </Menu.Item>
-                        <Menu.Item key="2" icon={<DesktopOutlined />}>
+                        <Menu.Item key="/board" icon={<DesktopOutlined />}>
                             <Link to='/board' replace>控制台</Link> 
                         </Menu.Item>
                         <Menu.Item key="3" icon={<ContainerOutlined />}>
@@ -55,4 +55,4 @@ class App extends React.Component {
 }
 
 
-export default App
+export default withRouter(App) 

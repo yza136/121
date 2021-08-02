@@ -31,9 +31,7 @@ const columns = [
             color = 'volcano';
           }
           return (
-            <Tag color={color} key={tag}>
-              
-            </Tag>
+            <Tag color={color} key={tag}></Tag>
           );
         })}
       </div>
@@ -120,9 +118,6 @@ var Uef = ()=>{
 
 
 export default class App extends React.Component {
-  
-
-
     render() {
         return (
           <div>

@@ -5,12 +5,10 @@ import Board from '../pages/content/board';
 
 const BasicRoute = () => (
     <div>
-        
-            <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/board" component={Board} />
-            </Switch>
-     
+        <Switch>
+           <Route exact path="/" component={Home} />
+           <Route  path="/board" component={Board}/>
+        </Switch>
     </div>
 );
-export default BasicRoute  
+export default BasicRoute 

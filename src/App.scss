@@ -38,6 +38,9 @@
     transform: rotate(360deg);
   }
 }
+.active {
+  background: tomato;
+}
 .header{
 	display: flex;
 	justify-content: space-around;

@@ -1,5 +1,5 @@
 import React from 'react'
-import Menu from './components/Menu'
+import Menu from './components/CustomMenu'
 import Router from './router/index'
 import {HashRouter,BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 import { Button, Layout, Breadcrumb } from 'antd';
@@ -57,7 +57,6 @@ export default class App extends React.Component {
       collapsed: !this.state.collapsed,
     });
   };
-
 
 
   render() {
