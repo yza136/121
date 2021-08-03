@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { HashRouter, Route, Switch, Link, NavLink,withRouter} from 'react-router-dom';
+import { HashRouter, Route, Switch, Link, NavLink, withRouter } from 'react-router-dom';
 import { Menu, Button } from 'antd';
 import { Scrollbars } from 'react-custom-scrollbars';
 import {
@@ -17,6 +17,7 @@ const { SubMenu } = Menu;
 class App extends React.Component {
     state = {
         collapsed: false,
+        SelectedKey: '/'
     };
 
     toggleCollapsed = () => {
@@ -24,28 +25,36 @@ class App extends React.Component {
             collapsed: !this.state.collapsed,
         });
     };
-    UNSAFE_componentWillMount(){
-        console.log(this.props.history.location.pathname)
+
+    UNSAFE_componentWillReceiveProps (){
+        this.setState({
+            SelectedKey: this.props.history.location.pathname
+        })
+    }
+    selectClick = () => {
+        
+        
     }
     render() {
         return (
             <div>
                 <Scrollbars className='left-wrap' >
                     <Menu
-                        defaultSelectedKeys={[this.props.history.location.pathname]}
+                        defaultSelectedKeys={['/']}
+                        selectedKeys={[this.state.SelectedKey]}
                         defaultOpenKeys={['sub1']}
                         mode="inline"
                         theme="dark"
-                        inlineCollapsed={this.props.collapsed}
+                        onSelect={this.selectClick}
                     >
                         <Menu.Item key="/" icon={<PieChartOutlined />}>
-                            <Link to='/' replace   >概况</Link>
+                            <Link to='/' replace>概况</Link>
                         </Menu.Item>
                         <Menu.Item key="/board" icon={<DesktopOutlined />}>
-                            <Link to='/board' replace>控制台</Link> 
+                            <Link to='/board' replace>控制台</Link>
                         </Menu.Item>
-                        <Menu.Item key="3" icon={<ContainerOutlined />}>
-                            数据管理
+                        <Menu.Item key="/DataManage" icon={<ContainerOutlined />}>
+                            <Link to='/DataManage' replace>数据管理</Link>
                          </Menu.Item>
                     </Menu>
                 </Scrollbars>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Table, Tag, Space, Breadcrumb } from 'antd';
+import {HashRouter, Route, Switch,Link } from 'react-router-dom';
+import { Table, Tag, Space,Breadcrumb } from 'antd';
 
 const columns = [
   {
@@ -14,7 +15,7 @@ const columns = [
     key: 'age',
   },
   {
-    title: '来源',
+    title: 'Address',
     dataIndex: 'address',
     key: 'address',
   },
@@ -71,14 +72,57 @@ const data = [
     tags: ['cool', 'teacher'],
   },
 ];
+const routes = [
+  {
+    path: 'index',
+    breadcrumbName: 'home',
+  },
+  {
+    path: 'first',
+    breadcrumbName: 'first',
+    children: [
+      {
+        path: '/general',
+        breadcrumbName: 'General',
+      },
+      {
+        path: '/layout',
+        breadcrumbName: 'Layout',
+      },
+      {
+        path: '/navigation',
+        breadcrumbName: 'Navigation',
+      },
+    ],
+  },
+  {
+    path: 'secon',
+    breadcrumbName: 'second',
+  },
+];
+
+
+var itemRender = (route, params, routes, paths)=>{
+  const last = routes.indexOf(route) === routes.length - 1;
+  return last ? (
+    <span>{route.breadcrumbName}</span>
+  ) : (
+    <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+  );
+}
 
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <div className='table-wrap'>
-        <Table columns={columns} dataSource={data} />
-      </div>
-    )
-  }
+    render() {
+        return (
+          <div>
+            <div className='bread-wrap'> 
+              <Breadcrumb itemRender={itemRender} routes={routes} />
+            </div>
+            <div className='table-wrap'>
+              <Table columns={columns} dataSource={data} />
+            </div>
+          </div>
+        )
+    }
 }
